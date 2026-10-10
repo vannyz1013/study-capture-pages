@@ -12,8 +12,8 @@
   <link rel="manifest" href="/study-capture-pages/manifest.webmanifest" />
   <link rel="apple-touch-icon" href="/study-capture-pages/icons/icon-180.png" />
   <link rel="icon" type="image/png" href="/study-capture-pages/icons/icon-192.png" />
-  <script type="module" crossorigin src="/study-capture-pages/assets/index-D56Htk7a.js"></script>
-  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-BNNJEbmP.css">
+  <script type="module" crossorigin src="/study-capture-pages/assets/index-BzI0wQWG.js"></script>
+  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-C6p97yaI.css">
 </head>
 <body>
   <!-- The form is plain HTML so the text box is on screen (and focused) before any script has loaded. -->
@@ -41,7 +41,17 @@
     <section class="recent" aria-label="Saved on this phone">
       <h2>Saved on this phone</h2>
       <ol id="recent"></ol>
+      <button id="recently-deleted" class="text-link" type="button" hidden>Recently Deleted</button>
     </section>
   </main>
+  <dialog id="note-sheet" class="note-sheet" aria-labelledby="sheet-title">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <header class="sheet-header">
+      <h2 id="sheet-title">Note Details</h2>
+      <button id="sheet-close" class="sheet-close" type="button" aria-label="Close">×</button>
+    </header>
+    <div id="sheet-body" class="sheet-body"></div>
+    <footer id="sheet-actions" class="sheet-actions"></footer>
+  </dialog>
 </body>
 </html>
