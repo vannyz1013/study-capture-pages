@@ -1,0 +1,30 @@
+{
+  "name": "Study Capture",
+  "short_name": "Capture",
+  "description": "Quick lecture capture that saves on this phone first, even offline.",
+  "id": "/study-capture-pages/",
+  "start_url": "/study-capture-pages/",
+  "scope": "/study-capture-pages/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff8e7",
+  "theme_color": "#fff8e7",
+  "icons": [
+    {
+      "src": "/study-capture-pages/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/study-capture-pages/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/study-capture-pages/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
