@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
-  <title>Capture</title>
+  <title>Study Capture</title>
   <meta name="theme-color" content="#fff8e7" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -12,14 +12,20 @@
   <link rel="manifest" href="/study-capture-pages/manifest.webmanifest" />
   <link rel="apple-touch-icon" href="/study-capture-pages/icons/icon-180.png" />
   <link rel="icon" type="image/png" href="/study-capture-pages/icons/icon-192.png" />
-  <script type="module" crossorigin src="/study-capture-pages/assets/index-7EpHUZMG.js"></script>
-  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-D0O9RG73.css">
+  <script type="module" crossorigin src="/study-capture-pages/assets/index-ZuC1pTON.js"></script>
+  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-C1vgqZ_w.css">
 </head>
 <body>
   <!-- The form is plain HTML so the text box is on screen (and focused) before any script has loaded. -->
-  <main class="app">
+  <main class="app" id="capture-screen">
     <header class="status" id="status" role="status" aria-live="polite">Loading…</header>
     <p class="warn" id="warn" hidden></p>
+
+    <nav class="lecture-nav" aria-label="Lecture tools">
+      <button id="start-lecture" class="text-link" type="button">Start Lecture</button>
+      <button id="continue-lecture" class="text-link" type="button" hidden>Continue Lecture</button>
+      <button id="open-lectures" class="text-link" type="button">Lecture Sessions</button>
+    </nav>
 
     <div class="chips" id="chips" role="radiogroup" aria-label="Type"></div>
 
@@ -44,6 +50,59 @@
       <button id="recently-deleted" class="text-link" type="button" hidden>Recently Deleted</button>
     </section>
   </main>
+  <main id="lecture-start-screen" class="lecture-page" hidden>
+    <button class="text-link lecture-back" type="button" data-lecture-screen="capture">‹ Quick Capture</button>
+    <h1>Start Lecture</h1>
+    <p class="lecture-intro">Choose a course. Your notes stay on this phone.</p>
+    <label class="lecture-label" for="lecture-course">Course</label>
+    <select id="lecture-course" class="course" aria-label="Lecture course"></select>
+    <p id="lecture-start-feedback" class="lecture-feedback" role="status" aria-live="polite"></p>
+    <button id="lecture-start-confirm" class="lecture-primary" type="button">Start Lecture</button>
+  </main>
+
+  <main id="lecture-sessions-screen" class="lecture-page" hidden>
+    <button class="text-link lecture-back" type="button" data-lecture-screen="capture">‹ Quick Capture</button>
+    <h1>Lecture Sessions</h1>
+    <p class="lecture-intro">Saved on this phone, including sessions you can continue.</p>
+    <ol id="lecture-session-list" class="lecture-session-list"></ol>
+    <p id="lecture-list-empty" class="lecture-empty" hidden>No lecture sessions yet.</p>
+  </main>
+
+  <main id="lecture-reading-screen" class="lecture-page" hidden>
+    <button id="lecture-reading-back" class="text-link lecture-back" type="button">‹ Lecture Sessions</button>
+    <h1 id="lecture-reading-title">Lecture</h1>
+    <p id="lecture-reading-meta" class="lecture-intro"></p>
+    <div id="lecture-reading-entries" class="lecture-reading-entries"></div>
+  </main>
+
+  <main id="lecture-active-screen" class="lecture-page lecture-active" hidden>
+    <header class="lecture-header">
+      <button id="lecture-active-home" class="text-link lecture-home" type="button">Quick Capture</button>
+      <div class="lecture-session-heading">
+        <h1 id="lecture-active-course">Lecture</h1>
+        <time id="lecture-active-started" class="lecture-time"></time>
+      </div>
+      <p id="lecture-save-status" class="lecture-save-status" role="status" aria-live="polite">Saved locally</p>
+    </header>
+    <div id="lecture-entry-history" class="lecture-entry-history" aria-label="Earlier entries"></div>
+    <div class="lecture-editor-area">
+      <p id="lecture-active-type" class="lecture-active-type">Note</p>
+      <div id="lecture-markers" class="lecture-markers" role="group" aria-label="Entry type">
+        <button type="button" class="lecture-marker selected" data-entry-type="note" aria-pressed="true">Note</button>
+        <button type="button" class="lecture-marker" data-entry-type="question" aria-pressed="false">Question</button>
+        <button type="button" class="lecture-marker" data-entry-type="key_point" aria-pressed="false">Key Point</button>
+        <button type="button" class="lecture-marker" data-entry-type="lecturer_tip" aria-pressed="false">Lecturer Tip</button>
+        <button type="button" class="lecture-marker" data-entry-type="exam_hint" aria-pressed="false">Exam Hint</button>
+      </div>
+      <textarea id="lecture-text" class="lecture-text" rows="8" placeholder="Start typing your lecture notes…"
+                aria-label="Lecture notes" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="enter"></textarea>
+    </div>
+    <footer class="lecture-actions">
+      <button id="lecture-mode-toggle" class="lecture-secondary" type="button" aria-pressed="false">Board Rush</button>
+      <button id="lecture-end" class="lecture-primary lecture-end" type="button">End Lecture</button>
+    </footer>
+  </main>
+
   <dialog id="note-sheet" class="note-sheet" aria-labelledby="sheet-title">
     <div class="sheet-handle" aria-hidden="true"></div>
     <header class="sheet-header">
