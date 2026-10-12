@@ -4,11 +4,11 @@
 // Cache first for everything of ours: the page opens instantly and works with no network at all.
 // Notes are NOT here: they live in IndexedDB, which the service worker never touches.
 
-const VERSION = "52f06ef3f5019c67";
+const VERSION = "cbe7ef8ff886c7a7";
 const FILES = [
   "/study-capture-pages/",
-  "/study-capture-pages/assets/index-C16MS6uC.css",
-  "/study-capture-pages/assets/index-DBNgOeRe.js",
+  "/study-capture-pages/assets/index-9MZVk5_7.css",
+  "/study-capture-pages/assets/index-BBB_-W9T.js",
   "/study-capture-pages/icons/icon-180.png",
   "/study-capture-pages/icons/icon-192.png",
   "/study-capture-pages/icons/icon-512-maskable.png",
