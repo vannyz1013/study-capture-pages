@@ -12,8 +12,8 @@
   <link rel="manifest" href="/study-capture-pages/manifest.webmanifest" />
   <link rel="apple-touch-icon" href="/study-capture-pages/icons/icon-180.png" />
   <link rel="icon" type="image/png" href="/study-capture-pages/icons/icon-192.png" />
-  <script type="module" crossorigin src="/study-capture-pages/assets/index-BcRSWYRi.js"></script>
-  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-CH5znH2H.css">
+  <script type="module" crossorigin src="/study-capture-pages/assets/index-JKG_5VI6.js"></script>
+  <link rel="stylesheet" crossorigin href="/study-capture-pages/assets/index-QVQsy2We.css">
 </head>
 <body>
   <!-- The form is plain HTML so the text box is on screen (and focused) before any script has loaded. -->
@@ -64,14 +64,29 @@
     <button class="text-link lecture-back" type="button" data-lecture-screen="capture">‹ Quick Capture</button>
     <h1>Lecture Sessions</h1>
     <p class="lecture-intro">Saved on this phone, including sessions you can continue.</p>
+    <nav class="lecture-list-tabs" aria-label="Lecture sessions">
+      <button id="lecture-show-current" class="selected" type="button" aria-pressed="true">Lectures</button>
+      <button id="lecture-show-deleted" type="button" aria-pressed="false">Recently Deleted</button>
+    </nav>
+    <p id="lecture-management-feedback" class="lecture-feedback" role="status" aria-live="polite"></p>
     <ol id="lecture-session-list" class="lecture-session-list"></ol>
     <p id="lecture-list-empty" class="lecture-empty" hidden>No lecture sessions yet.</p>
   </main>
 
   <main id="lecture-reading-screen" class="lecture-page" hidden>
     <button id="lecture-reading-back" class="text-link lecture-back" type="button">‹ Lecture Sessions</button>
-    <h1 id="lecture-reading-title">Lecture</h1>
+    <header class="lecture-reading-header">
+      <h1 id="lecture-reading-title">Lecture</h1>
+      <details id="lecture-reading-menu" class="lecture-menu">
+        <summary aria-label="More lecture actions">⋯</summary>
+        <div class="lecture-menu-items">
+          <button id="lecture-reading-edit" type="button">Edit details</button>
+          <button id="lecture-reading-delete" class="danger" type="button">Delete</button>
+        </div>
+      </details>
+    </header>
     <p id="lecture-reading-meta" class="lecture-intro"></p>
+    <p id="lecture-reading-feedback" class="lecture-feedback" role="status" aria-live="polite"></p>
     <div id="lecture-reading-entries" class="lecture-reading-entries"></div>
   </main>
 
@@ -82,6 +97,12 @@
         <h1 id="lecture-active-course">Lecture</h1>
         <time id="lecture-active-started" class="lecture-time"></time>
       </div>
+      <details class="lecture-menu lecture-active-menu">
+        <summary aria-label="Lecture details">⋯</summary>
+        <div class="lecture-menu-items">
+          <button id="lecture-active-edit" type="button">Edit details</button>
+        </div>
+      </details>
       <p id="lecture-save-status" class="lecture-save-status" role="status" aria-live="polite">Saved locally</p>
     </header>
     <div id="lecture-entry-history" class="lecture-entry-history" aria-label="Earlier entries"></div>
@@ -103,6 +124,23 @@
       <button id="lecture-end" class="lecture-primary lecture-end" type="button">End Lecture</button>
     </footer>
   </main>
+
+  <dialog id="lecture-edit-dialog" class="lecture-edit-dialog" aria-labelledby="lecture-edit-heading">
+    <form id="lecture-edit-form">
+      <header class="lecture-edit-header">
+        <h2 id="lecture-edit-heading">Edit lecture details</h2>
+      </header>
+      <label class="lecture-label" for="lecture-edit-title">Title <span class="lecture-optional">Optional</span></label>
+      <input id="lecture-edit-title" class="lecture-edit-field" type="text" maxlength="80" autocomplete="off" placeholder="Lecture title">
+      <label class="lecture-label" for="lecture-edit-week">Week <span class="lecture-optional">Optional</span></label>
+      <input id="lecture-edit-week" class="lecture-edit-field" type="number" min="1" step="1" inputmode="numeric" placeholder="Week number">
+      <p id="lecture-edit-feedback" class="lecture-feedback" role="alert" aria-live="polite"></p>
+      <footer class="lecture-edit-actions">
+        <button id="lecture-edit-cancel" class="lecture-secondary" type="button">Cancel</button>
+        <button id="lecture-edit-save" class="lecture-primary" type="submit">Save</button>
+      </footer>
+    </form>
+  </dialog>
 
   <dialog id="note-sheet" class="note-sheet" aria-labelledby="sheet-title">
     <div class="sheet-handle" aria-hidden="true"></div>
